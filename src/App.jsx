@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -5,20 +6,29 @@ import { WalletProvider } from './context/WalletContext';
 import { ToastProvider } from './components/common/Toast';
 import AppLayout from './components/layout/AppLayout';
 
-// Pages
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import WalletPage from './pages/WalletPage';
-import SendReceive from './pages/SendReceive';
-import SwapPage from './pages/SwapPage';
-import HistoryPage from './pages/HistoryPage';
-import MarketPage from './pages/MarketPage';
-import SecurityPage from './pages/SecurityPage';
-import SettingsPage from './pages/SettingsPage';
-import NotificationsPage from './pages/NotificationsPage';
-import ProfilePage from './pages/ProfilePage';
-import StakingPage from './pages/StakingPage';
-import NFTPage from './pages/NFTPage';
+// Lazy load pages for smaller chunks
+const Login = lazy(() => import('./pages/Login'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const WalletPage = lazy(() => import('./pages/WalletPage'));
+const SendReceive = lazy(() => import('./pages/SendReceive'));
+const SwapPage = lazy(() => import('./pages/SwapPage'));
+const HistoryPage = lazy(() => import('./pages/HistoryPage'));
+const MarketPage = lazy(() => import('./pages/MarketPage'));
+const SecurityPage = lazy(() => import('./pages/SecurityPage'));
+const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+const NotificationsPage = lazy(() => import('./pages/NotificationsPage'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const StakingPage = lazy(() => import('./pages/StakingPage'));
+const NFTPage = lazy(() => import('./pages/NFTPage'));
+
+// Simple loading fallback
+function Loading() {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-white dark:bg-dark-300 z-[9999]">
+      <div className="w-10 h-10 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+}
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
@@ -32,30 +42,32 @@ function AuthRoute({ children }) {
 
 function AppRoutes() {
   return (
-    <Routes>
-      {/* Auth */}
-      <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        {/* Auth */}
+        <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
 
-      {/* Protected app */}
-      <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-        <Route index element={<Dashboard />} />
-        <Route path="wallet" element={<WalletPage />} />
-        <Route path="send" element={<SendReceive />} />
-        <Route path="receive" element={<SendReceive />} />
-        <Route path="swap" element={<SwapPage />} />
-        <Route path="history" element={<HistoryPage />} />
-        <Route path="market" element={<MarketPage />} />
-        <Route path="security" element={<SecurityPage />} />
-        <Route path="settings" element={<SettingsPage />} />
-        <Route path="notifications" element={<NotificationsPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="staking" element={<StakingPage />} />
-        <Route path="nft" element={<NFTPage />} />
-      </Route>
+        {/* Protected app */}
+        <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route index element={<Dashboard />} />
+          <Route path="wallet" element={<WalletPage />} />
+          <Route path="send" element={<SendReceive />} />
+          <Route path="receive" element={<SendReceive />} />
+          <Route path="swap" element={<SwapPage />} />
+          <Route path="history" element={<HistoryPage />} />
+          <Route path="market" element={<MarketPage />} />
+          <Route path="security" element={<SecurityPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+          <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="staking" element={<StakingPage />} />
+          <Route path="nft" element={<NFTPage />} />
+        </Route>
 
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 
