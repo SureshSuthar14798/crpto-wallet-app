@@ -45,8 +45,13 @@ export default function StakingPage() {
             {active.map(s => (
               <Card key={s.id} variant="solid" padding="md">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{ backgroundColor: s.color }}>
-                    {s.icon}
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden">
+                    <img 
+                      src={s.icon} 
+                      alt={s.assetName} 
+                      className="w-6 h-6 object-contain" 
+                      onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                    />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-900 dark:text-white">{s.assetName}</p>
@@ -77,8 +82,13 @@ export default function StakingPage() {
           {available.map(s => (
             <Card key={s.id} variant="solid" padding="md" onClick={() => setSelected(s)} className="cursor-pointer">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{ backgroundColor: s.color }}>
-                  {s.icon}
+                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden">
+                  <img 
+                    src={s.icon} 
+                    alt={s.assetName} 
+                    className="w-6 h-6 object-contain" 
+                    onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                  />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white">{s.assetName}</p>

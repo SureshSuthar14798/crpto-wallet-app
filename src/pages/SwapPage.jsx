@@ -13,10 +13,14 @@ function TokenPill({ token, onClick }) {
       className="flex items-center gap-2 rounded-full bg-surface-100 dark:bg-dark-100 hover:bg-surface-200/80 dark:hover:bg-dark-50 border border-surface-200/60 dark:border-white/[0.06] pl-1.5 pr-3 py-1.5 transition-all active:scale-[0.96] flex-shrink-0"
     >
       <div
-        className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs"
-        style={{ backgroundColor: token.color }}
+        className="w-7 h-7 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden"
       >
-        {token.icon}
+        <img 
+          src={token.icon} 
+          alt={token.symbol} 
+          className="w-4 h-4 object-contain" 
+          onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+        />
       </div>
       <span className="text-sm font-bold text-gray-900 dark:text-white">{token.symbol}</span>
       <ChevronDown size={13} className="text-gray-400 -ml-0.5" />
@@ -293,10 +297,14 @@ export default function SwapPage() {
               className="w-full flex items-center gap-3 mt-3 p-3 rounded-xl bg-surface-50 dark:bg-dark-100 hover:bg-surface-100 dark:hover:bg-dark-200/50 border border-surface-200/30 dark:border-white/[0.04] transition-all"
             >
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                style={{ backgroundColor: buyCrypto.color }}
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden"
               >
-                {buyCrypto.icon}
+                <img 
+                  src={buyCrypto.icon} 
+                  alt={buyCrypto.name} 
+                  className="w-6 h-6 object-contain" 
+                  onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                />
               </div>
               <div className="flex-1 text-left">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white">{buyCrypto.name}</p>
@@ -369,10 +377,14 @@ export default function SwapPage() {
                 }`}
               >
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                  style={{ backgroundColor: token.color }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden"
                 >
-                  {token.icon}
+                  <img 
+                    src={token.icon} 
+                    alt={token.name} 
+                    className="w-5 h-5 object-contain" 
+                    onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                  />
                 </div>
                 <div className="flex-1 text-left min-w-0">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white">{token.name}</p>

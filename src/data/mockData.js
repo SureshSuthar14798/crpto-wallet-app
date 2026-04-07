@@ -34,13 +34,15 @@ export const portfolioHistory = [
   { date: 'Apr 6', value: 61847 },
 ];
 
+const ICON_URL = (symbol) => `https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/${symbol.toLowerCase()}.png`;
+
 // Crypto assets
 export const cryptoAssets = [
   {
     id: 'bitcoin',
     name: 'Bitcoin',
     symbol: 'BTC',
-    icon: '₿',
+    icon: ICON_URL('btc'),
     color: '#F7931A',
     price: 87432.50,
     change24h: 2.34,
@@ -52,7 +54,7 @@ export const cryptoAssets = [
     id: 'ethereum',
     name: 'Ethereum',
     symbol: 'ETH',
-    icon: 'Ξ',
+    icon: ICON_URL('eth'),
     color: '#627EEA',
     price: 3245.80,
     change24h: -1.28,
@@ -64,7 +66,7 @@ export const cryptoAssets = [
     id: 'tether',
     name: 'Tether',
     symbol: 'USDT',
-    icon: '₮',
+    icon: ICON_URL('usdt'),
     color: '#26A17B',
     price: 1.00,
     change24h: 0.01,
@@ -76,7 +78,7 @@ export const cryptoAssets = [
     id: 'solana',
     name: 'Solana',
     symbol: 'SOL',
-    icon: '◎',
+    icon: ICON_URL('sol'),
     color: '#9945FF',
     price: 142.65,
     change24h: 5.67,
@@ -88,7 +90,7 @@ export const cryptoAssets = [
     id: 'cardano',
     name: 'Cardano',
     symbol: 'ADA',
-    icon: '₳',
+    icon: ICON_URL('ada'),
     color: '#0033AD',
     price: 0.6842,
     change24h: -3.21,
@@ -302,14 +304,14 @@ export const wallets = [
 
 // Market trends
 export const marketTrends = [
-  { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', price: 87432.50, change: 2.34, marketCap: '1.72T', volume: '38.5B', icon: '₿', color: '#F7931A' },
-  { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', price: 3245.80, change: -1.28, marketCap: '390.2B', volume: '18.2B', icon: 'Ξ', color: '#627EEA' },
-  { id: 'solana', name: 'Solana', symbol: 'SOL', price: 142.65, change: 5.67, marketCap: '62.4B', volume: '4.8B', icon: '◎', color: '#9945FF' },
-  { id: 'bnb', name: 'BNB', symbol: 'BNB', price: 612.40, change: 0.85, marketCap: '91.8B', volume: '2.1B', icon: '⬡', color: '#F3BA2F' },
-  { id: 'xrp', name: 'XRP', symbol: 'XRP', price: 2.18, change: -0.54, marketCap: '124.5B', volume: '3.7B', icon: '✕', color: '#346AA9' },
-  { id: 'cardano', name: 'Cardano', symbol: 'ADA', price: 0.6842, change: -3.21, marketCap: '24.1B', volume: '890M', icon: '₳', color: '#0033AD' },
-  { id: 'avalanche', name: 'Avalanche', symbol: 'AVAX', price: 38.92, change: 4.12, marketCap: '15.8B', volume: '720M', icon: '▲', color: '#E84142' },
-  { id: 'polkadot', name: 'Polkadot', symbol: 'DOT', price: 7.85, change: 1.93, marketCap: '11.2B', volume: '450M', icon: '●', color: '#E6007A' },
+  { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', price: 87432.50, change: 2.34, marketCap: '1.72T', volume: '38.5B', icon: ICON_URL('btc'), color: '#F7931A' },
+  { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', price: 3245.80, change: -1.28, marketCap: '390.2B', volume: '18.2B', icon: ICON_URL('eth'), color: '#627EEA' },
+  { id: 'solana', name: 'Solana', symbol: 'SOL', price: 142.65, change: 5.67, marketCap: '62.4B', volume: '4.8B', icon: ICON_URL('sol'), color: '#9945FF' },
+  { id: 'bnb', name: 'BNB', symbol: 'BNB', price: 612.40, change: 0.85, marketCap: '91.8B', volume: '2.1B', icon: ICON_URL('bnb'), color: '#F3BA2F' },
+  { id: 'xrp', name: 'XRP', symbol: 'XRP', price: 2.18, change: -0.54, marketCap: '124.5B', volume: '3.7B', icon: ICON_URL('xrp'), color: '#346AA9' },
+  { id: 'cardano', name: 'Cardano', symbol: 'ADA', price: 0.6842, change: -3.21, marketCap: '24.1B', volume: '890M', icon: ICON_URL('ada'), color: '#0033AD' },
+  { id: 'avalanche', name: 'Avalanche', symbol: 'AVAX', price: 38.92, change: 4.12, marketCap: '15.8B', volume: '720M', icon: ICON_URL('avax'), color: '#E84142' },
+  { id: 'polkadot', name: 'Polkadot', symbol: 'DOT', price: 7.85, change: 1.93, marketCap: '11.2B', volume: '450M', icon: ICON_URL('dot'), color: '#E6007A' },
 ];
 
 // NFT collection
@@ -358,7 +360,7 @@ export const stakingOptions = [
     id: 'stake001',
     asset: 'ETH',
     assetName: 'Ethereum',
-    icon: 'Ξ',
+    icon: ICON_URL('eth'),
     color: '#627EEA',
     apy: 4.8,
     minStake: 0.1,
@@ -372,7 +374,7 @@ export const stakingOptions = [
     id: 'stake002',
     asset: 'SOL',
     assetName: 'Solana',
-    icon: '◎',
+    icon: ICON_URL('sol'),
     color: '#9945FF',
     apy: 7.2,
     minStake: 1,
@@ -386,7 +388,7 @@ export const stakingOptions = [
     id: 'stake003',
     asset: 'ADA',
     assetName: 'Cardano',
-    icon: '₳',
+    icon: ICON_URL('ada'),
     color: '#0033AD',
     apy: 5.5,
     minStake: 100,
@@ -400,7 +402,7 @@ export const stakingOptions = [
     id: 'stake004',
     asset: 'DOT',
     assetName: 'Polkadot',
-    icon: '●',
+    icon: ICON_URL('dot'),
     color: '#E6007A',
     apy: 12.3,
     minStake: 10,
@@ -414,14 +416,14 @@ export const stakingOptions = [
 
 // Swap tokens list
 export const swapTokens = [
-  { symbol: 'BTC', name: 'Bitcoin', price: 87432.50, icon: '₿', color: '#F7931A', balance: 0.4521 },
-  { symbol: 'ETH', name: 'Ethereum', price: 3245.80, icon: 'Ξ', color: '#627EEA', balance: 4.23 },
-  { symbol: 'USDT', name: 'Tether', price: 1.00, icon: '₮', color: '#26A17B', balance: 5200 },
-  { symbol: 'SOL', name: 'Solana', price: 142.65, icon: '◎', color: '#9945FF', balance: 15 },
-  { symbol: 'ADA', name: 'Cardano', price: 0.6842, icon: '₳', color: '#0033AD', balance: 1850 },
-  { symbol: 'BNB', name: 'BNB', price: 612.40, icon: '⬡', color: '#F3BA2F', balance: 0 },
-  { symbol: 'AVAX', name: 'Avalanche', price: 38.92, icon: '▲', color: '#E84142', balance: 0 },
-  { symbol: 'DOT', name: 'Polkadot', price: 7.85, icon: '●', color: '#E6007A', balance: 0 },
+  { symbol: 'BTC', name: 'Bitcoin', price: 87432.50, icon: ICON_URL('btc'), color: '#F7931A', balance: 0.4521 },
+  { symbol: 'ETH', name: 'Ethereum', price: 3245.80, icon: ICON_URL('eth'), color: '#627EEA', balance: 4.23 },
+  { symbol: 'USDT', name: 'Tether', price: 1.00, icon: ICON_URL('usdt'), color: '#26A17B', balance: 5200 },
+  { symbol: 'SOL', name: 'Solana', price: 142.65, icon: ICON_URL('sol'), color: '#9945FF', balance: 15 },
+  { symbol: 'ADA', name: 'Cardano', price: 0.6842, icon: ICON_URL('ada'), color: '#0033AD', balance: 1850 },
+  { symbol: 'BNB', name: 'BNB', price: 612.40, icon: ICON_URL('bnb'), color: '#F3BA2F', balance: 0 },
+  { symbol: 'AVAX', name: 'Avalanche', price: 38.92, icon: ICON_URL('avax'), color: '#E84142', balance: 0 },
+  { symbol: 'DOT', name: 'Polkadot', price: 7.85, icon: ICON_URL('dot'), color: '#E6007A', balance: 0 },
 ];
 
 // User profile

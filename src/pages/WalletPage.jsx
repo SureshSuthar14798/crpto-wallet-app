@@ -100,10 +100,14 @@ export default function WalletPage() {
             {assets.map((asset) => (
               <div key={asset.id} className="flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-3 sm:py-3.5">
                 <div
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base flex-shrink-0"
-                  style={{ backgroundColor: asset.color }}
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden"
                 >
-                  {asset.icon}
+                  <img 
+                    src={asset.icon} 
+                    alt={asset.name} 
+                    className="w-5 h-5 sm:w-6 sm:h-6 object-contain" 
+                    onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[13px] sm:text-sm font-semibold text-gray-900 dark:text-white">{asset.name}</p>

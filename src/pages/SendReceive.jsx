@@ -74,10 +74,14 @@ export default function SendReceive() {
                 className="w-full flex items-center gap-3 mt-2 p-3 rounded-xl bg-surface-100 dark:bg-dark-50 hover:bg-surface-200 dark:hover:bg-dark-100 transition-colors"
               >
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                  style={{ backgroundColor: selectedAsset.color }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden"
                 >
-                  {selectedAsset.icon}
+                  <img 
+                    src={selectedAsset.icon} 
+                    alt={selectedAsset.name} 
+                    className="w-6 h-6 object-contain" 
+                    onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                  />
                 </div>
                 <div className="flex-1 text-left">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white">{selectedAsset.name}</p>
@@ -203,10 +207,14 @@ export default function SendReceive() {
               className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-surface-100 dark:hover:bg-dark-50 transition-colors"
             >
               <div
-                className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                style={{ backgroundColor: asset.color }}
+                className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-dark-50 shadow-sm border border-surface-200/50 dark:border-white/5 flex-shrink-0 overflow-hidden"
               >
-                {asset.icon}
+                <img 
+                  src={asset.icon} 
+                  alt={asset.name} 
+                  className="w-5 h-5 object-contain" 
+                  onError={(e) => { e.target.src = 'https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/generic.png'; }}
+                />
               </div>
               <div className="flex-1 text-left">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white">{asset.name}</p>
