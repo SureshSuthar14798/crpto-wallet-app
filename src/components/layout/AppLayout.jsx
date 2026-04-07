@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import BottomTabBar from './BottomTabBar';
+
+// Loading fallback for lazy pages
+function PageLoader() {
+  return (
+    <div className="w-full h-[60vh] flex items-center justify-center">
+      <div className="w-10 h-10 border-[3px] border-surface-200 dark:border-white/5 border-t-primary-500 rounded-full animate-spin" />
+    </div>
+  );
+}
 
 export default function AppLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,17 +28,9 @@ export default function AppLayout() {
         <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
         <main className="flex-1 overflow-y-auto no-scrollbar scroll-smooth">
           <div className="px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8 pb-24 lg:pb-12 max-w-7xl mx-auto w-full">
-            <AnimatePresence>
-              <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Outlet />
-              </motion.div>
-            </AnimatePresence>
+            <Suspense fallback={<PageLoader />}>
+              <Outlet />
+            </Suspense>
           </div>
         </main>
       </div>

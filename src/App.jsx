@@ -44,32 +44,30 @@ function AuthRoute({ children }) {
 
 function AppRoutes() {
   return (
-    <Suspense fallback={<Loading />}>
-      <Routes>
-        {/* Auth */}
-        <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
+    <Routes>
+      {/* Auth */}
+      <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
 
-        {/* Protected app */}
-        <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-          <Route index element={<Dashboard />} />
-          <Route path="wallet" element={<WalletPage />} />
-          <Route path="send" element={<SendReceive />} />
-          <Route path="receive" element={<SendReceive />} />
-          <Route path="swap" element={<SwapPage />} />
-          <Route path="history" element={<HistoryPage />} />
-          <Route path="market" element={<MarketPage />} />
-          <Route path="security" element={<SecurityPage />} />
-          <Route path="settings" element={<SettingsPage />} />
-          <Route path="notifications" element={<NotificationsPage />} />
-          <Route path="profile" element={<ProfilePage />} />
-          <Route path="staking" element={<StakingPage />} />
-          <Route path="nft" element={<NFTPage />} />
-        </Route>
+      {/* Protected app */}
+      <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+        <Route index element={<Dashboard />} />
+        <Route path="wallet" element={<WalletPage />} />
+        <Route path="send" element={<SendReceive />} />
+        <Route path="receive" element={<SendReceive />} />
+        <Route path="swap" element={<SwapPage />} />
+        <Route path="history" element={<HistoryPage />} />
+        <Route path="market" element={<MarketPage />} />
+        <Route path="security" element={<SecurityPage />} />
+        <Route path="settings" element={<SettingsPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="staking" element={<StakingPage />} />
+        <Route path="nft" element={<NFTPage />} />
+      </Route>
 
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Suspense>
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
