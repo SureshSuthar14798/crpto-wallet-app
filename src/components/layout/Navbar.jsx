@@ -22,7 +22,7 @@ const pageTitles = {
   '/notifications': 'Notifications',
 };
 
-export default function Navbar() {
+export default function Navbar({ onMenuClick }) {
   const { isDark, toggleTheme } = useTheme();
   const { unreadCount } = useWallet();
   const navigate = useNavigate();
@@ -34,11 +34,17 @@ export default function Navbar() {
     <header className="sticky top-0 z-30 bg-white/80 dark:bg-dark-300/80 backdrop-blur-2xl border-b border-surface-200/40 dark:border-white/[0.04]">
       <div className="flex items-center justify-between h-[52px] sm:h-14 lg:h-16 px-3 sm:px-4 lg:px-8">
         {/* Left */}
-        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+        <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden p-2 -ml-1 rounded-xl hover:bg-surface-100 dark:hover:bg-dark-50 text-gray-600 dark:text-gray-400 transition-colors flex-shrink-0"
+          >
+            <Menu size={20} />
+          </button>
           {!isHome && (
             <button
               onClick={() => navigate(-1)}
-              className="lg:hidden p-1.5 sm:p-2 -ml-1 rounded-xl hover:bg-surface-100 dark:hover:bg-dark-50 text-gray-600 dark:text-gray-400 transition-colors flex-shrink-0"
+              className="p-1.5 sm:p-2 rounded-xl hover:bg-surface-100 dark:hover:bg-dark-50 text-gray-600 dark:text-gray-400 transition-colors flex-shrink-0"
             >
               <ChevronLeft size={20} />
             </button>

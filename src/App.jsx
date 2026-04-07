@@ -1,10 +1,12 @@
-import { lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { WalletProvider } from './context/WalletContext';
 import { ToastProvider } from './components/common/Toast';
 import AppLayout from './components/layout/AppLayout';
+import MainLoader from './components/common/MainLoader';
 
 // Lazy load pages for smaller chunks
 const Login = lazy(() => import('./pages/Login'));
@@ -72,13 +74,28 @@ function AppRoutes() {
 }
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <BrowserRouter>
       <ThemeProvider>
         <AuthProvider>
           <WalletProvider>
             <ToastProvider>
-              <AppRoutes />
+              <AnimatePresence mode="wait">
+                {loading ? (
+                  <MainLoader key="loader" />
+                ) : (
+                  <AppRoutes key="app" />
+                )}
+              </AnimatePresence>
             </ToastProvider>
           </WalletProvider>
         </AuthProvider>
