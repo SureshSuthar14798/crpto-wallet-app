@@ -17,6 +17,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    /* Global scaling for mobile to make content more compact */
+    @media (max-width: 639px) {
+      font-size: 14px;
+    }
   }
 
   body {
