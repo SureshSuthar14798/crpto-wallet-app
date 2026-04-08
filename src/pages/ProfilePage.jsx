@@ -9,6 +9,7 @@ import {
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
+import { useAuth } from '../context/AuthContext';
 import { userProfile } from '../data/mockData';
 
 const containerVariants = {
@@ -29,6 +30,7 @@ const itemVariants = {
 };
 
 export default function ProfilePage() {
+  const { logout } = useAuth();
   const [showEdit, setShowEdit] = useState(false);
 
   const accountInfo = [
@@ -152,11 +154,14 @@ export default function ProfilePage() {
                   </div>
                </div>
             </Card>
-            <div className="px-1">
-               <button className="flex items-center gap-2 text-xs font-bold text-red-500 hover:text-red-600 transition-colors">
-                  <LogOut size={16} /> Logout from Secure Session
-               </button>
-            </div>
+             <div className="px-1">
+                <button 
+                  onClick={logout}
+                  className="flex items-center gap-2 text-xs font-bold text-red-500 hover:text-red-600 transition-colors"
+                >
+                   <LogOut size={16} /> Logout from Secure Session
+                </button>
+             </div>
          </motion.div>
 
       </div>

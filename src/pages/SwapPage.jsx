@@ -151,7 +151,7 @@ export default function SwapPage() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.85, rotate: 180 }}
                 onClick={swapTokensHandler}
-                className="w-10 h-10 bg-primary-500 hover:bg-primary-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary-500/25 transition-colors ring-[3px] ring-white dark:ring-dark-300"
+                className="w-10 h-10 bg-primary-500 hover:bg-primary-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/25 transition-colors ring-[3px] ring-white dark:ring-dark-300"
               >
                 <ArrowDownUp size={16} strokeWidth={2.5} />
               </motion.button>

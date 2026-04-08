@@ -24,6 +24,7 @@ export default function Button({
     ghost: 'hover:bg-surface-100 dark:hover:bg-dark-50 text-gray-600 dark:text-gray-400',
     danger: 'bg-red-500 hover:bg-red-600 text-white shadow-md hover:shadow-lg',
     success: 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg',
+    outline: 'bg-transparent border border-surface-300 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-surface-50 dark:hover:bg-white/5',
   };
 
   const sizes = {

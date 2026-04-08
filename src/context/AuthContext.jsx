@@ -8,6 +8,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('crypto-wallet-auth') === 'true';
   });
+  
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('crypto-wallet-user');
     return storedUser ? JSON.parse(storedUser) : null;
