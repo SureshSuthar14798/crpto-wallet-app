@@ -44,7 +44,7 @@ export default function AppLayout() {
       </div>
 
       {/* Mobile bottom tabs */}
-      <BottomTabBar />
+      <BottomTabBar isSidebarOpen={isSidebarOpen} />
     </div>
   );
 }

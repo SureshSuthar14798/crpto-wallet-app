@@ -13,11 +13,18 @@ const tabs = [
   { path: '/history', icon: History, label: 'Activity' },
 ];
 
-export default function BottomTabBar() {
+export default function BottomTabBar({ isSidebarOpen }) {
   const location = useLocation();
 
   return (
-    <nav className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-md z-[100]">
+    <AnimatePresence>
+      {!isSidebarOpen && (
+        <motion.nav 
+          initial={{ x: "-50%", y: 100, opacity: 0 }}
+          animate={{ x: "-50%", y: 0, opacity: 1 }}
+          exit={{ x: "-50%", y: 100, opacity: 0 }}
+          className="lg:hidden fixed bottom-4 left-1/2 w-[calc(100%-2rem)] max-w-md z-[100]"
+        >
       {/* Floating Dock Container */}
       <div className="relative bg-white/70 dark:bg-dark-100/70 backdrop-blur-3xl border border-white/20 dark:border-white/5 rounded-[28px] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] px-3 py-2 flex items-center justify-between">
         
@@ -73,6 +80,8 @@ export default function BottomTabBar() {
           );
         })}
       </div>
-    </nav>
+        </motion.nav>
+      )}
+    </AnimatePresence>
   );
 }

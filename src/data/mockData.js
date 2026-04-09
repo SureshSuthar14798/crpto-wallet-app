@@ -428,8 +428,8 @@ export const swapTokens = [
 
 // User profile
 export const userProfile = {
-  name: 'Kim Minjun',
-  email: 'minjun.kim@email.com',
+  name: 'Suresh Suthar',
+  email: 'suresh@gmail.com',
   avatar: null,
   phone: '+82 10-****-5678',
   joinDate: 'January 2025',

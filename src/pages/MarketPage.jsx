@@ -255,14 +255,9 @@ export default function MarketPage() {
 
                     {/* Action (Desktop) */}
                     <div className="hidden md:flex justify-end">
-                      <Button variant="outline" size="sm" className="!px-3 !py-1.5 text-xs opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity">
+                      <Button variant="outline" size="sm" className="hover:bg-primary hover:text-emerald-500 !px-3 !py-1.5 text-xs transition-opacity">
                         Trade
                       </Button>
-                    </div>
-
-                    {/* Mobile Detail Indicator */}
-                    <div className="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-gray-300">
-                      <ChevronRight size={18} />
                     </div>
                   </motion.div>
                 ))
