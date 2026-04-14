@@ -10,6 +10,7 @@ import MainLoader from './components/common/MainLoader';
 
 // Lazy load pages for smaller chunks
 const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const WalletPage = lazy(() => import('./pages/WalletPage'));
 const SendReceive = lazy(() => import('./pages/SendReceive'));
@@ -47,6 +48,7 @@ function AppRoutes() {
     <Routes>
       {/* Auth */}
       <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
+      <Route path="/register" element={<AuthRoute><Register /></AuthRoute>} />
 
       {/* Protected app */}
       <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>

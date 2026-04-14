@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Lock, Eye, EyeOff, ArrowRight, Wallet, Shield } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { User, Lock, Eye, EyeOff, ArrowRight, Wallet, Shield, Mail, Phone } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
-import { useAuth } from '../context/AuthContext';
 import { useToast } from '../components/common/Toast';
 
 const container = {
@@ -16,34 +15,30 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
-export default function Login() {
-  const { login } = useAuth();
+export default function Register() {
   const { addToast } = useToast();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      login(id, password);
+    // Dummy registration
+    setTimeout(() => {
+      setLoading(false);
       addToast({
         type: 'success',
-        title: 'Login Successful',
-        message: 'Welcome back to CryptoVault!',
+        title: 'Registration Successful',
+        message: 'Welcome to CryptoVault! Please log in.',
         duration: 4000,
       });
-    } catch (err) {
-      addToast({
-        type: 'error',
-        title: 'Login Failed',
-        message: err.message,
-        duration: 4000,
-      });
-    }
-    setLoading(false);
+      navigate('/login');
+    }, 1000);
   };
 
   return (
@@ -65,21 +60,46 @@ export default function Login() {
             <div className="w-14 h-14 sm:w-16 sm:h-16 gradient-primary rounded-[20px] shadow-xl shadow-primary-500/20 flex items-center justify-center mx-auto mb-3 animate-float">
                <Wallet className="text-white" size={28} />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-gray-900 dark:text-white">CryptoVault</h1>
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mt-1">Secure Node Connection</p>
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-gray-900 dark:text-white">Create Account</h1>
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mt-1">Join the future of finance</p>
           </motion.div>
           
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1">
-              <label className="block px-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">User ID</label>
+              <label className="block px-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Address</label>
               <Input 
-                type="text" 
-                placeholder="User ID" 
-                className="!py-4 !rounded-[20px] text-sm"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                type="email" 
+                placeholder="email@example.com" 
+                className="!py-3 !rounded-[18px] text-sm"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required 
               />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="block px-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Nickname</label>
+                <Input 
+                  type="text" 
+                  placeholder="CryptoUser" 
+                  className="!py-3 !rounded-[18px] text-sm"
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                  required 
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="block px-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Phone</label>
+                <Input 
+                  type="tel" 
+                  placeholder="+1..." 
+                  className="!py-3 !rounded-[18px] text-sm"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required 
+                />
+              </div>
             </div>
 
             <div className="space-y-1">
@@ -88,7 +108,7 @@ export default function Login() {
                 <Input 
                   type={showPassword ? "text" : "password"} 
                   placeholder="••••••••••••" 
-                  className="!py-4 !rounded-[20px] text-sm pr-12"
+                  className="!py-3 !rounded-[18px] text-sm pr-12"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required 
@@ -103,22 +123,22 @@ export default function Login() {
               </div>
             </div>
             
-            <Button type="submit" loading={loading} fullWidth className="!py-4 !rounded-[20px] text-xs font-black uppercase tracking-[2px] shadow-lg shadow-primary-500/20 mt-6 active:scale-95 transition-all">
-              Login
+            <Button type="submit" loading={loading} fullWidth className="!py-4 !rounded-[20px] text-xs font-black uppercase tracking-[2px] shadow-lg shadow-primary-500/20 mt-4 active:scale-95 transition-all">
+              Create Account
               <ArrowRight size={16} className="ml-2" />
             </Button>
           </form>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-6">
             <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-              New to the node? {' '}
-              <Link to="/register" className="text-primary-600 dark:text-primary-400 hover:underline font-black outline-none">Create Account</Link>
+              Already member? {' '}
+              <Link to="/login" className="text-primary-600 dark:text-primary-400 hover:underline font-black outline-none">Login here</Link>
             </p>
           </div>
         </div>
         
-        <p className="text-center mt-8 text-[10px] font-bold text-gray-400/50 uppercase tracking-widest">
-            Restricted Access • Authorized Members Only
+        <p className="text-center mt-6 text-[10px] font-bold text-gray-400/50 uppercase tracking-widest">
+            Secure Protocol • End-to-End Encryption
         </p>
       </motion.div>
     </div>

@@ -247,11 +247,6 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Prevent zoom on input focus (iOS) */
-  input, textarea, select {
-    font-size: 16px !important;
-  }
-
   /* Tighter card paddings on mobile */
   .glass-card {
     @apply p-5;
